@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:stable
+    container_name: nginx-next
+    ports:
+      - "80:80"
+    volumes:
+      - "./conf.d:/etc/nginx/conf.d"
+    links:
+      - express
+
+  express:
+    image: node:11.9.0-alpine
+    container_name: express
+    hostname: express
+    volumes:
+      - ".:/src"
+    working_dir: /src
+    command: [sh, -c, npm install && npm run build && npm run start]
+    ports:
+      - "3000:3000"

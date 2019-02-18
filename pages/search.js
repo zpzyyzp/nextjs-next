@@ -11,6 +11,13 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField'
+import 'date-fns';
+import getDaysInMonth from 'date-fns/getDaysInMonth'
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import Grid from '@material-ui/core/Grid';
+import jaLocale from 'date-fns/locale/ja';
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,6 +43,9 @@ const useStyles = makeStyles(theme => ({
   },
   noLabel: {
     marginTop: theme.spacing.unit * 3,
+  },
+  grid: {
+    width: '60%',
   },
 }));
 
@@ -90,6 +100,8 @@ function SearchForm () {
   const theme = useTheme();
   const [constClass, setConstClass] = useState([]);
   const [category, setCategory] = useState([]);
+  const [date, setDate] = useState(new Date());
+  const [days, setDays] = useState(getDaysInMonth(date));
 
   const handleChangeConstClass = event => {
     setConstClass(event.target.value)
@@ -97,6 +109,36 @@ function SearchForm () {
 
   const handleChangeCategory = event => {
     setCategory(event.target.value)
+  }
+
+  const handleChangeDate = date => {
+    let tmp = new Date(date)
+    setDate(tmp)
+    setDays(getDaysInMonth(tmp))
+  }
+
+  const handleChangeYear = year => {
+    let tmp = new Date(date)
+    tmp.setFullYear(year.target.value)
+    setDate(tmp)
+    setDays(getDaysInMonth(tmp))
+  }
+
+  const handleChangeMonth = month => {
+    let tmp = new Date(date)
+    tmp.setMonth(month.target.value)
+    setDate(tmp)
+    setDays(getDaysInMonth(tmp))
+  }
+
+  const handleChangeDay = day => {
+    let tmp = new Date(date)
+    tmp.setDate(day.target.value)
+    setDate(tmp)
+  }
+
+  const openPicker = e => {
+
   }
 
   return (
@@ -154,6 +196,77 @@ function SearchForm () {
             className={classes.textField}
           />
         </FormControl>
+      </div>
+      <div className={classes.root}>
+        <FormControl className={classes.formControl}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale} className={classes.textField}>
+            <DatePicker
+              label="日付"
+              value={date}
+              format='yyyy年MM月dd日'
+              onChange={handleChangeDate}
+/*              adornmentPosition="start"
+              showTodayButton="true"
+              todayLabel="今日"*/
+            />
+          </MuiPickersUtilsProvider>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="age-simple">Year</InputLabel>
+          <Select
+            value={date.getFullYear()}
+            onChange={handleChangeYear}
+            inputProps={{
+              name: 'year',
+              id: 'year',
+            }}
+          >
+            <MenuItem value={2014}>2014</MenuItem>
+            <MenuItem value={2015}>2015</MenuItem>
+            <MenuItem value={2016}>2016</MenuItem>
+            <MenuItem value={2017}>2017</MenuItem>
+            <MenuItem value={2018}>2018</MenuItem>
+            <MenuItem value={2019}>2019</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="age-simple">Month</InputLabel>
+          <Select
+            value={date.getMonth()}
+            onChange={handleChangeMonth}
+            inputProps={{
+              name: 'month',
+              id: 'month',
+            }}
+          >
+            <MenuItem value={0}>1</MenuItem>
+            <MenuItem value={1}>2</MenuItem>
+            <MenuItem value={2}>3</MenuItem>
+            <MenuItem value={3}>4</MenuItem>
+            <MenuItem value={4}>5</MenuItem>
+            <MenuItem value={5}>6</MenuItem>
+            <MenuItem value={6}>7</MenuItem>
+            <MenuItem value={7}>8</MenuItem>
+            <MenuItem value={8}>9</MenuItem>
+            <MenuItem value={9}>10</MenuItem>
+            <MenuItem value={10}>11</MenuItem>
+            <MenuItem value={11}>12</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="age-simple">Day</InputLabel>
+          <Select
+            value={date.getDate()}
+            onChange={handleChangeDay}
+            inputProps={{
+              name: 'day',
+              id: 'day',
+            }}
+          >
+            {Array(days).fill(1).map((x, i) => <MenuItem value={i + 1}>{i + 1}</MenuItem>)}
+          </Select>
+        </FormControl>
+        <Button onClick={openPicker}> Open picker </Button>
       </div>
     </Layout>
   )

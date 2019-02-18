@@ -3,12 +3,15 @@
   "version": "4.0.0",
   "private": true,
   "dependencies": {
+    "@date-io/date-fns": "latest",
+    "date-fns": "^2.0.0-alpha.27",
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",
     "@material-ui/styles": "latest",
     "express": "^4.16.4",
     "google-map-react": "^1.1.2",
     "jss": "next",
+    "material-ui-pickers": "^2.2.1",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
@@ -16,9 +19,9 @@
     "react-google-maps": "^9.4.5"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js"
+    "start": "next start"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"
