@@ -5,7 +5,9 @@ services:
     image: nextjs-next
     build: .
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     ports:
       - 3000:3000
-    command: [sh, -c, npm install && npm run build && npm run start]
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect index.js
