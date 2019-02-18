@@ -24,11 +24,8 @@ const Header = () => (
         <Link href="/about">
           <Button color="inherit">About</Button>
         </Link>
-        <Link href="/detailed-search">
-          <Button color="inherit">詳細検索</Button>
-        </Link>
         <Link href="/search">
-          <Button color="inherit">詳細検索2</Button>
+          <Button color="inherit">詳細検索</Button>
         </Link>
         <Link href="/map">
           <Button color="inherit">地図</Button>
