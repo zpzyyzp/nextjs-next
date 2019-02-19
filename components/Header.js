@@ -12,7 +12,13 @@ const Header = () => (
   <AppBar position="static">
     <Toolbar>
       <div>
-        <img src="https://www.kumamoto-archive.jp/wp-content/uploads/logo.png" alt="熊本地震デジタルアーカイブ" height="75px"/>
+        <Link
+          href="/"
+        >
+          <a>
+            <img src="https://www.kumamoto-archive.jp/wp-content/uploads/logo.png" alt="熊本地震デジタルアーカイブ" height="75px"/>
+          </a>
+        </Link>
         <Hidden smUp>
           <IconButton color="inherit" aria-label="Menu">
             <MenuIcon/>

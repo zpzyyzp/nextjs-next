@@ -9,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField'
 import 'date-fns';
 import getDaysInMonth from 'date-fns/getDaysInMonth'

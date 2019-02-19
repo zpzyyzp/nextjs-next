@@ -2,18 +2,11 @@
 import '../src/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import Layout from '../components/MyLayout'
 import MainMapLayout from '../components/map_layout'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-}));
 
-function Map () {
+function Map2 () {
   return (
     <Layout>
       <MainMapLayout layout="left"/>
@@ -21,4 +14,4 @@ function Map () {
   );
 }
 
-export default Map
+export default Map2
